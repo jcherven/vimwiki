@@ -1,0 +1,46 @@
+# question bank (non-exhaustive)
+
+- what is java
+- why java
+- what is the jvm
+- what is the jre
+- what is the jdk
+- what is a bit
+- what is a byte
+- what is a nybbl
+- what are the naming conventions in java
+- what a re the primitive datatypes in java
+- what is flow control
+- what does the keyword break do
+- what does the keyword continue do
+- what is short circuiting
+- what datatypes does a switch case allow
+- what is an array
+- what method do you call to find the size of an array
+- what is a method
+- what is a function vs a mthod
+- what is method overloading
+- what is var args in java
+- what is a class
+- what is an object
+- what are the four pillars of OOP
+- what is a constructor
+- what does the keyword new do in java
+- can you name the 3 types of constructors
+- is the default constructor and the no args constructor the same thing
+- what is the first implicit linne of any constructor
+- what is the difference between super and this
+- what is the difference between initializing and instantiating
+- what are the scopes of a variable in java
+- what are the access modifiers in java
+- what is shadowing
+- what is the difference between overloading and overriding
+- what is runtime polymorphism
+- what is compile time polymorphism
+- what is type casting
+- what is the difference between up and down casting
+- what is a wrapper class
+- what is autoboxing
+- what is unboxing
+- what is a string
+- what is the difference between string, stringbuilder, and stringbuffer?
