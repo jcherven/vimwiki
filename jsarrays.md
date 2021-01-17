@@ -114,6 +114,8 @@ array1.concat(array2);
 
 ### slice()
 
+This does not mutate the array.
+
 - `array.slice(value)` captures a subarray from `value` to the end of the array (without mutating `array`)
 - `array.slice(-3)` captures a subarray of the last 3 elements in `array` (without mutating `array`)
 - `array.slice(5)` will return `array` elements starting from index 5
@@ -128,4 +130,3 @@ array1.concat(array2);
 	// ['guitar1', 'bass', 'guitar2']
 	```
 	- `array.slice(-3)` will return the last 3 items of `array`
-	- 
