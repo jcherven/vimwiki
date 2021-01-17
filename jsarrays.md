@@ -1,10 +1,12 @@
-# Javascript Arrays
+# JS Arrays
 
-- in js, arrays can be of arbitrary mixed data types (values, strings, objects, bools, etc)
+In js, arrays are dynamic:
+	- they don't need you to specify how much data to hold
+	- they can be of arbitrary mixed data types (values, strings, objects, bools, etc)
 
 ```javascript
 // for instance, this is a valid array in js
-let myCollection = [ 12, 'dog', true, null, NaN ];
+let absoluteGarbage = [ 12, 'pekora', true, null, NaN ];
 ```
 
 ```javascript
@@ -16,9 +18,10 @@ new Array()
 ```
 
 - strings will be instantiated as immutable arrays
-- they can be accessed by index, but can't be changed (without creating a new array)
+- strings inherit array methods but also define their own special methods like `trim()`, `concat()`, etc.
+- strings can be accessed by index, but can't be changed (without creating a new array)
 
-## updating arrays
+## Mutating Arrays
 
 - indexes can be added to arrays arbitrarily
 
@@ -31,22 +34,40 @@ new Array()
 // [ <2 empty items>, 'basil' ]
 ```
 
-## array methods
+## Array Methods
 
-### postfix methods
+### includes(), indexOf() Search Methods
+
+- `array.includes(value, [fromIndex])`: finds an exact match of `value`, returns a boolean
+	- has an optional fromIndex argument:
+		- `array.includes('megurine luka', 3)` searches the value 'megurine luka' after index 3 onwards
+
+- `array.indexOf(value, [fromIndex])`: finds an exact match of `value`, returns the index number of `value`
+	- has an optional fromIndex argument:
+		- `array.indexOf('morfonica', 6)` searches after index 6 (inclusive)
+
+### push(), pop() Postfix Methods (mutating)
 
 These will mutate the array.
 
-- `array.push()`: adds to end, returns the new length
-- `array.pop()`: removes from end, returns the popped value 
+- `array.push(value)`: adds `value` to end, returns the new length
+- `array.pop(value)`: removes `value` from end, returns the popped value 
 
-### prefix methods
+Consider this way of doing things:
+
+```javascript
+let korosanWords = ['yubi', 'oayo', 'horayo'];
+// this behaves exactly like push() with a single value passed in
+korosanWords[korosanWords.length] = 'chikisho';
+```
+
+### unshift(), shift() Prefix Methods (mutating)
 
 These will mutate the array
 
-- `array.unshift(value)`: adds to the beginning, returns the unshifted new length
+- `array.unshift(value, [value], [...])`: adds to the beginning, returns the unshifted new length
 	- mnemonic: think of the array shifting right, making space for the passed arg
-- `array.shift(value)`: removes from the beginning, returns the shifted value
+- `array.shift(value, [value], [...])`: removes from the beginning, returns the shifted value
 	- mnemonic: think of the array shifting left, dropping off the first value.
 - multiple values can be passed into unshift and push. new items get inserted in the order they're passed.
 
@@ -56,9 +77,9 @@ These will mutate the array
 	// [ 'chikisho', 'horayo', 'yubi', 'oayo' ]
 	```
 
-### concat
+### concat() (non-mutating)
 
-merges two or more arrays. does not mutate the array.
+Merges two or more arrays. Does not mutate the array.
 
 ```javascript
 const track1 = ['roselia', 'determination symphony'];
@@ -69,23 +90,14 @@ array1.concat(array2);
 // track1 has not been mutated by this
 ```
 
-### Searching methods
-
-- `array.includes(value)`: finds an exact match of value, returns a boolean
-	- has an optional fromIndex argument:
-		- `array.includes('megurine luka', 3)` searches the value 'megurine luka' after index 3 onwards
-- `array.indexOf(value)`: returns the index number of `value`
-	- has an optional fromIndex argument:
-		- `array.indexOf('morfonica', 6)` searches after index 6 (inclusive)
-
-### reverse()
+### reverse() (mutating)
 
 - `array.reverse()` mutates `array`, reversing the index order
 
-### join()
+### join() (mutating)
 
 - `array.join(delimiter)` mutates `array`, turning it into a string object with the delimiter:
-	- numbers and other types floats will be turned into string literals
+	- numbers and other types like floats will be turned into string literals
  
 	```javascript
 	let letters = [ m, i, k, u ];
@@ -112,21 +124,20 @@ array1.concat(array2);
 	// "12.3-60-false"
 	```
 
-### slice()
+### slice() (non-mutating)
 
 This does not mutate the array.
 
 - `array.slice(value)` captures a subarray from `value` to the end of the array (without mutating `array`)
-- `array.slice(-3)` captures a subarray of the last 3 elements in `array` (without mutating `array`)
 - `array.slice(5)` will return `array` elements starting from index 5
-- `array.slice(startIndexInclusive, endIndexNonInclusive)` captures a subarray without mutating `array`:
+- `array.slice(startIndexInclusive, endIndexExclusive)` captures a subarray without mutating `array`:
 	- the start index is inclusive
-	- the end index is non-inclusive
-- `array.slice(-3, -1)` is valid, it captures the subarray of the third-last to second-last.
+	- the end index is exclusive
 
 	```javascript
 	let band = ['vocal', 'guitar1', 'bass', 'guitar2', 'drums', 'keyboard']
 	let stringInstruments = band.slice(1,4);
 	// ['guitar1', 'bass', 'guitar2']
 	```
-	- `array.slice(-3)` will return the last 3 items of `array`
+	- `array.slice(-3)` is valid, it will return the last 3 items of `array`
+	- `array.slice(-3, -1)` captures the subarray of the third-last to second-last.
