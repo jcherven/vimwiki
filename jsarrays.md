@@ -25,7 +25,7 @@ new Array()
 
 Variables referencing arrays are always references in js. This gives arrays their mutability and enables the functionality of the array methods below.
 
-Arrays declared with `const` can be mutated, unlike value types decalred with `const`. Generally, a new declared array should be done with `const` in a lot of cases. 
+Arrays declared with `const` can be mutated, unlike primitive types decalred with `const`. Generally, a new declared array should be done with `const` in a lot of cases. 
 
 ## Mutating Arrays
 
