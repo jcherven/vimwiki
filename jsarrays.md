@@ -1,8 +1,8 @@
 # JS Arrays
 
 In js, arrays are dynamic:
-	- they don't need you to specify how much data to hold
-	- they can be of arbitrary mixed data types (values, strings, objects, bools, etc)
+- they don't need you to specify how much data to hold
+- they can be of arbitrary mixed data types (values, strings, objects, bools, etc)
 
 ```javascript
 // for instance, this is a valid array in js
@@ -20,6 +20,12 @@ new Array()
 - strings will be instantiated as immutable arrays
 - strings inherit array methods but also define their own special methods like `trim()`, `concat()`, etc.
 - strings can be accessed by index, but can't be changed (without creating a new array)
+
+## Arrays as References
+
+Variables referencing arrays are always references in js. This gives arrays their mutability and enables the functionality of the array methods below.
+
+Arrays declared with `const` can be mutated, unlike value types decalred with `const`. Generally, a new declared array should be done with `const` in a lot of cases. 
 
 ## Mutating Arrays
 
@@ -90,10 +96,6 @@ array1.concat(array2);
 // track1 has not been mutated by this
 ```
 
-### reverse() (mutating)
-
-- `array.reverse()` mutates `array`, reversing the index order
-
 ### join() (mutating)
 
 - `array.join(delimiter)` mutates `array`, turning it into a string object with the delimiter:
@@ -140,4 +142,47 @@ This does not mutate the array.
 	// ['guitar1', 'bass', 'guitar2']
 	```
 	- `array.slice(-3)` is valid, it will return the last 3 items of `array`
-	- `array.slice(-3, -1)` captures the subarray of the third-last to second-last.
+	- `array.slice(-3, -2)` captures the subarray of the third-last to second-last items.
+- `array.slice()` with no arguments simply copies the array. It is useful and will appear in a lot of code.
+
+### splice() (mutating)
+
+This mutates the array. It's used for arbitrarily changing the contents of an array.
+
+`array.splice(start[, deleteCount[, item1[, item2[, ...]]]])`
+
+- Splice returns an array of deleted items. Nothing is returned if nothing is deleted.
+	- Thus, splice can be used to both edit the array and get any removed items at once.
+- The start argument value is the item count (non-inclusive), not the array's index number.
+- The deleteCount argument is a number of items to be deleted
+- Deleted items don't leave empty indexes in the array. You get a new contiguously populated array.
+- Omitting replacement args simply deletes the targeted items. The deleted items are returned and the array is now shorter.
+
+- `array.splice(3, 0, 'koro')` will insert the string 'koro' at index 4 of `array`. Nothing is returned.
+- `array.splice(1, 2, 'oka')` will replace item 2 and 3 (indexes 1, 2) with the value 'oka'. An array with items 2 and 3 are returned.
+- `array.splice(1, 2)` will simply delete the items 2 and 3 (Array indexes 1 and 2).
+
+Consider this way of changing a single item in an array:
+
+```javascript
+let roselia = ['yukina', 'lisa', 'rinko', 'saya', 'ako'];
+let keyboardist = 'rinko';
+
+roselia.splice(roselia.indexOf(keyboardist), 1, keyboardist.toUpperCase());
+// ['rinko']
+
+> roselia
+// [ 'yukina', 'lisa', 'RINKO', 'saya', 'ako' ]
+```
+
+### reverse() Sorting method (mutating)
+
+- `array.reverse()` mutates `array`, reversing the index order as a return value.
+
+### sort() Sorting method (mutating)
+
+- array.sort() mutates `array`. The default (no args) sort order is tricky; numbers are converted to strings and the array is sorted by the UTF-16 values.
+- The effect of this is that strings will be alphabetically sorted, while numbers will have a strange ordering.
+- A sorted array is returned.
+- `array.sort()` 
+
