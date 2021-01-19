@@ -1,3 +1,5 @@
 - [jsarrays](jsarrays)
 - [jsobjects](jsobjects)
+- [jsmathmethods](jsmathmethods)
+- [jsstringmethods](jsstringmethods)
 - 
