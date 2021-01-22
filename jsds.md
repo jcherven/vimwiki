@@ -1,3 +1,4 @@
+- [jsPrimitiveWrapperObjects](jsPrimitiveWrapperObjects)
 - [jsarrays](jsarrays)
 - [jsobjects](jsobjects)
 - [jsmathmethods](jsmathmethods)

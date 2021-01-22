@@ -6,7 +6,7 @@
 
 `parseInt(string)` Returns an int value of `string`. Radix is an optional arg that specifies the base of the returned int.
 
-parseInt does not default to base 10 if the radix arg is not provided. In this case, it's simply type coerced into a `xber`.
+parseInt does not default to base 10 if the radix arg is not provided. In this case, it's simply type coerced into a `number`.
 
 ### parseFloat(string)
 
