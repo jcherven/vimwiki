@@ -2,6 +2,11 @@
 
 ![make pasta with me](./index_image.png)
 
+## Regular Expressions Notes
+- [regexToolsAndTheory](regexToolsAndTheory)
+- [simpleRegex](simpleRegex)
+- [scaryRegex](scaryRegex)
+
 ## Javascript Notes by Topic
 - [js data structures](jsds)
 - [js algorithms](jsalgorithms)

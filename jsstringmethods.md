@@ -6,13 +6,15 @@
 
 ## str.toLowerCase()
 
-## str.split(seaparator, limit)
+## str.split(separator, limit)
 
-
+Non-mutating; returns an array
 
 ## str.charAt(index)
 
 ## str.indexOf(searchString, index)
+
+`index` is an optional integer arg that sets the search start position (inclusive).
 
 ## str.includes(searchString, index)
 
