@@ -12,6 +12,7 @@
 - [js algorithms](jsalgorithms)
 - [js patterns](jspatterns)
 - [js vm internals](jsvminternals)
+- [csWithJs](csWithJs)
  
 ## Java Full Stack Notes by Week
 - [Week01](wiki/week01)
