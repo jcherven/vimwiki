@@ -10,7 +10,7 @@ The position modifier for positioning properties. Pushes an element off of the s
 	top: 100px;
 }
 ```
-`top` property is the offset. This pushes .box away from the element to .box's NF top by 100px.
+`top` property is the offset for the `position` property. This pushes `.box` away from the element to `.box`'s NF top by 100px.
 
 ## Positioning Types
 
@@ -39,7 +39,7 @@ Element is drawn in a position relative to its own position *in Normal Flow*. It
 }
 ```
 
-If box is in the top right corner of the page in NF, giving it a relative position and a top property will draw it shifted down from the center.
+If `.box` is in the top right corner of the page in NF, giving it a relative position and a top property will draw it shifted down from the center.
 
 ```css
 .box {
@@ -49,7 +49,7 @@ If box is in the top right corner of the page in NF, giving it a relative positi
 }
 ```
 
-If the same box has a right property of a negative number added, it would be drawn as shifted to the right. With a positive value, the right property would push off of the right side of the element, but with a negative value it's semantically consistent.
+If the same `.box` has a right property of a negative number added, it would be drawn as shifted to the right. With a positive value, the right property would push off of the right side of the element, but with a negative value it's semantically consistent.
 
 ```css
 .box {
@@ -65,9 +65,9 @@ Removes an element from NF. The document will reflow. Question: will other eleme
 
 #### Absolute
 
-Modifies the NF of the element. Elements with the absolute property do not leave a reserved space in NF. The rest of the document will reflow.
-
 Positioning context: parent (containing) element
+
+Modifies the NF of the element. Elements with the absolute property do not leave a reserved space in NF. The rest of the document will reflow.
 
 Element is drawn in a position relative to its parent (containing) element in NF.
 
@@ -81,7 +81,7 @@ Element is drawn in a position relative to its parent (containing) element in NF
 }
 ```
 
-Assume .box is nested inside .parent in the markup. .box will be drawn such that its top is pushed off 100px .parent's top.
+Assume `.box` is nested inside `.parent` in the markup. `.box` will be drawn such that its top is pushed off 100px from `.parent`'s top.
 
 ```css
 .parent {
@@ -94,7 +94,7 @@ Assume .box is nested inside .parent in the markup. .box will be drawn such that
 }
 ```
 
-this would stick .box in the bottom right corner of .parent.
+this would stick `.box` in the bottom right corner of `.parent`.
 
 ```css
 .parent {
@@ -107,7 +107,7 @@ this would stick .box in the bottom right corner of .parent.
 }
 ```
 
-This would stick .box's bottom against .parent's bottom, and shift .box outside of .parent's left.
+This would stick `.box`'s bottom against `.parent`'s bottom, and shift `.box` outside of `.parent`'s left.
 
 #### Fixed
 
@@ -125,7 +125,7 @@ Fixed elements will stay in position when the browser is resized; the term "fixe
 }
 ```
 
-This would position .box pushed down from the viewport's top and pushed off of the viewport's right.
+This would position `.box` pushed down from the viewport's top and pushed off of the viewport's right.
 
 ```css
 .box {
@@ -134,7 +134,7 @@ This would position .box pushed down from the viewport's top and pushed off of t
 	right: 0px;
 }
 ```
-This positions .box directly in the bottom right corner of the viewport.
+This positions `.box` directly in the bottom right corner of the viewport.
 
 #### Sticky
 
@@ -148,5 +148,7 @@ A sticky element behaves as relative until the element is scrolled up to its par
 	top: 0px;
 }
 ```
+
+Here, `.box`'s top is shifted to its parent element's top. If scrolling down causes `.box`'s top to reach the viewport's top, it becomes fixed as scrolling continues.
 
 ## Z-Index
