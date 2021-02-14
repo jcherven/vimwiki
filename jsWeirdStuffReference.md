@@ -26,16 +26,20 @@ function copyArrayAndManipulate(array, instructions) {
 
 // running the higher order function with an anonymous function
 const result = copyArrayAndManipulate( [1, 2, 3], input => input * 2 );
-// anonymous function defined here ------------->[                 ]
+// anonymous function defined here ------------->[                  ]
 ```
 
 know that due to lexical scope, arrow functions and anonymous functions are not suitable for general function definitions.
 
+
+
 ## lexical (static) scope
 
+js has a particular scope rule called lexical (or static) scoping. this means that data available to a function is determined where in memory that function is stored rather than where it's called from. the latter is known as dynamic scoping.
 
+the term lexical refers to the fact that one can derive the scope by reading the source code. another way to think about this is that the scope for a function can be deduced at compile time.
 
-## Closure
+## closure
 
 1. each time a function is invoked, its object gets a new instantiation and thus new local memory. when it returns a value to its calling context, popped from the call stack, and its local memory is lost.
 2. there are times when a function invocation would need to be re-used with the data it's already been given.
@@ -51,7 +55,7 @@ function createFn() {
 }
 
 const generatedFn = createFn();
-const result generatedFn(3);
+const result = generatedFn(3);
 ```
 
 in createFn(), the code of multiplyBy2() gets stored in global memory after createFn() returns. this turns the identifier `result` effectively into a command to run that code. however, the code referenced by `result` has nothing to do with the original function call. saving a function in global memory like this allows it to gain a powerful ability to use data in the *global context*, which was previously off limits.
@@ -92,9 +96,7 @@ on the second call, the same area of global memory is referenced, but in a new e
 
 both the overall concept of this, and the special property being stored, is called closure. colloquially we'd say "the data is in the function's closure", which is to say that the data is in the `[[scope]]` hidden property of the function's object in global memory.
 
-js has a particular scope rule called lexical (or static) scoping. this means that data available to a function is determined where in memory that function is stored rather than where it's called from. the latter is known as dynamic scoping.
-
-## multiple closures
+### multiple closures
 
 if a new const is declared with a call to outer, that new const gets its own new function in global memory, and that function object has its own closure.
 
@@ -104,11 +106,27 @@ const anotherFn = outer();
 // these two will each have their own closures.
 ```
 
-## practical uses
+### practical uses
 
 	- helper functions like `once` and `memoize`
 	- iterators and generators which use lexical scoping and closure to achieve the most contemporary patterns for handling data in js
 	- module pattern, which preserves the state for the life of an application without polluting the global namespace
 	- asynchronous javascript with callbacks and promises rely on closure to persist state in an async environment
 
+## hoisting
 
+hoisting is a behavior particular to js in which declared identifiers are initialized before the code is run.
+
+```javascript
+console.log(yubi);
+var yubi = 55;
+// undefined
+
+scream()
+function scream() { console.log("yubi yubi"); }
+// the interpreter hoists scream() and runs without scream being defined before calling.
+```
+
+rather than producing a missing reference error, the console understands that `yubi` is initialized somewhere in the script, but does not define it until the line where `yubi` is assigned to the value 55. this is a side effect of how function definitions are treated in many other languages as well as JS, where function calls can occur before the function definition in otherwise sequentially written code.
+
+identifiers declared with `var` are hoisted by the interpreter, while those declared with `let` and `const` are not. in the cases of these keywords, a reference error is produced. in the same manner as with values, plain function declarations are hoisted, and function expressions of `var` are hoisted as well. however, function expressions of `let` and `const` are not hoisted. one of the key features of let and const keywords is that they prevent this hoisting side effect in order to prevent sneaky bugs.
