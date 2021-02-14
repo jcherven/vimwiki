@@ -33,6 +33,7 @@ On a function call, the thread finds the referenced area of memory and runs the 
 
 js keeps track of what execution context is currently running in the call stack. whatever's on the top of the stack is the current execution context. `return` can be seen as the keyword that indicates that js has to go back to the calling context. When everything's been popped off, the execution context is global().
 
+not to be confused with block scope; things like ifs and loops get their own protected namespace within the execution context. 
 
 ## call stack
 

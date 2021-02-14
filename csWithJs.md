@@ -83,6 +83,13 @@ const myArray = [1, 2, 3];
 const result = copyArrayAndManipulate(myArray, multiplyBy2);
 ```
 
-here we're composing functions in a very flexible way. we've defined a custom function `multiplyBy2()` that can be used as an arg in the call to `copyArrayAndManipulate()`, which is being used as a framework for doing anything you want to each element of any array (immutably, even). that's a higher order function. ES6 has a bunch of these higher order functions for various classes, like Array's map(), reduce(), forEach(), and so on.
+here we're composing functions in a very flexible way. we've left a placeholder for instructions in the function, giving it the ability to have generalized functionality. we've defined a custom function `multiplyBy2()` that can be used as an arg in the call to `copyArrayAndManipulate()`, which is being used as a framework for doing anything you want to each element of any array (immutably, even). that's a higher order function. ES6 has a bunch of these higher order functions for various classes, like Array's map(), reduce(), forEach(), and so on.
 
+### first class objects
+
+higher order functions are possible in js because they are objects from the interpreter's standpoint. being objects they can be passed into functions and returned from functions. 
+
+### higher-order functions and callback functions in js
+
+in js, we say that `copyArrayandManipulate()` is the higher order function. `multiplyBy2`, being passed in as an argument, is known as a callback function. these are the basis of async programming in js.
 

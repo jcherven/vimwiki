@@ -13,6 +13,7 @@
 - [js patterns](jspatterns)
 - [js vm internals](jsvminternals)
 - [csWithJs](csWithJs)
+- [jsWeirdStuffReference](jsWeirdStuffReference)
  
 ## Java Full Stack Notes by Week
 - [Week01](wiki/week01)
