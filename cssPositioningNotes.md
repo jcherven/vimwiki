@@ -2,7 +2,7 @@
 
 ## Offset
 
-Pushes an element off of the specified side of the element.
+The position modifier for positioning properties. Pushes an element off of the specified side of the element.
 
 ```css
 .box {
@@ -10,8 +10,7 @@ Pushes an element off of the specified side of the element.
 	top: 100px;
 }
 ```
-
-This pushes .box away from the element to .box's NF top by 100px.
+`top` property is the offset. This pushes .box away from the element to .box's NF top by 100px.
 
 ## Positioning Types
 
@@ -19,9 +18,9 @@ Defined by the `position` property. Modifies an element's position from NF.
 
 ### Static
 
-The default positioning. The element falls into NF.
+The default positioning. The element falls into NF. Specifying an offset won't have an effect.
 
-### NF Non-Modifying
+### NF Non-Modifying Properties
 
 These positioning properties do not take the element out of normal flow, even if they are drawn in the browser to appear so. When these positions are applied, the NF position is still occupied by the element, even if it is visually drawn outside of its NF position.
 
@@ -60,7 +59,7 @@ If the same box has a right property of a negative number added, it would be dra
 }
 ```
 
-### Modifying Position Properties
+### NF Modifying Properties
 
 Removes an element from NF. The document will reflow. Question: will other elements now flow around this repositioned element?
 
@@ -76,7 +75,6 @@ Element is drawn in a position relative to its parent (containing) element in NF
 .parent {
 	position: relative;
 }
-
 .box {
 	position: absolute;
 	top: 100px;
@@ -89,7 +87,6 @@ Assume .box is nested inside .parent in the markup. .box will be drawn such that
 .parent {
 	position: relative;
 }
-
 .box {
 	position: absolute;
 	bottom: 0px;
