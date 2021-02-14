@@ -47,6 +47,7 @@ function createFn() {
 		return num * 2;
 	}
 	return multiplyBy2;
+	// javascript won't evaluate multiplyBy2 because this isn't a call. a call to be evaluated would have parens.
 }
 
 const generatedFn = createFn();
