@@ -14,6 +14,9 @@
 - [js vm internals](jsvminternals)
 - [csWithJs](csWithJs)
 - [jsWeirdStuffReference](jsWeirdStuffReference)
+
+## css notes
+- [cssPositioningNotes](cssPositioningNotes)
  
 ## Java Full Stack Notes by Week
 - [Week01](wiki/week01)
