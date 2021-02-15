@@ -115,7 +115,7 @@ Positioning context: the browser window (viewport)
 
 Fixed elements use the offset value that relative and absolute use. Fixed elements don't always appear to be semantically moved in the direction that their properties state. The offset behavior applies.
 
-Fixed elements will stay in position when the browser is resized; the term "fixed" refers to its relativity to the browser viewport.
+If the browser window gets resized, a fixed element will move relative to it. the term "fixed" refers to its relativity to the browser viewport.
 
 ```css
 .box {
@@ -152,3 +152,21 @@ A sticky element behaves as relative until the element is scrolled up to its par
 Here, `.box`'s top is shifted to its parent element's top. If scrolling down causes `.box`'s top to reach the viewport's top, it becomes fixed as scrolling continues.
 
 ## Z-Index
+
+Higher index values are on top of lower index values. Be sure to leave numerical space between values incase you need to add something in between later.
+
+Used like so:
+
+```css
+.blue {
+	z-index: 20;
+}
+.green {
+	z-index: 30;
+}
+.red {
+	z-index: 10;
+}
+```
+
+`.green` is on top of `.blue`, and `.red` is beneath that.
