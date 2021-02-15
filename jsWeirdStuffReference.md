@@ -130,3 +130,146 @@ function scream() { console.log("yubi yubi"); }
 rather than producing a missing reference error, the console understands that `yubi` is initialized somewhere in the script, but does not define it until the line where `yubi` is assigned to the value 55. this is a side effect of how function definitions are treated in many other languages as well as JS, where function calls can occur before the function definition in otherwise sequentially written code.
 
 identifiers declared with `var` are hoisted by the interpreter, while those declared with `let` and `const` are not. in the cases of these keywords, a reference error is produced. in the same manner as with values, plain function declarations are hoisted, and function expressions of `var` are hoisted as well. however, function expressions of `let` and `const` are not hoisted. one of the key features of let and const keywords is that they prevent this hoisting side effect in order to prevent sneaky bugs.
+
+## async javascript
+
+```javascript
+console.log('yubi yubi');
+
+setTimeout(function() {
+	console.log('bye bye');
+}, 3000);
+
+console.log('horayo');
+console.log('mogu mogu');
+console.log('dou~mo dou~mo');
+```
+
+`setTimeout`'s callback function runs asynchronously here. the string `bye bye` will print last in the console. the 
+
+### the callback pyramid
+
+assume we'd like to animate a button to move across the page, and we've decided to do this by translating it to the right by 100px every second. This will move the button 100px to the right exactly once. Repeating the action requires nested setTimeout calls.
+
+```javascript
+const btn = document.querySelector('button');
+
+setTimeout( () => {
+	btn.style.transform = `translateX(100px)`;
+	setTimeout( () => {
+		btn.style.transform = `translateX(100px)`;
+			setTimeout( () => {
+				btn.style.transform = `translateX(100px)`;
+			}, 1000 );
+	}, 1000 );
+}, 1000 );
+
+```
+
+Consider a way to do this instead with a function that accepts callback input.
+
+```javascript
+const moveX = (element, amount, delay, callback) => {
+setTimeout( () => {
+	elements.style.transform = `translateX(${amount}px)`
+	callback();
+}, delay )
+}
+
+moveX(btn, 100, 1000, () => {
+	moveX(btn, 200, 1000, () => {
+		moveX(btn, 300, 1000, () => {
+			moveX(btn, 400, 1000);
+		});
+	});
+});
+```
+
+Callback functions are marginally more readable in this case, but completely unhelpful if they contain any significant amount of code. To avoid this pattern, Javascript Promises are used to chain asynchronous code. However, understanding this pattern is helpful in understanding what Promises are.
+
+## Promises (the Promise class)
+
+### Overview
+
+Rewriting the above with promises looks like this:
+
+```javascript
+moveXPromise(btn, 100, 1000)
+	.then( () => moveXPromise(btn, 200, 1000))
+	.then( () => moveXPromise(btn, 300, 1000))
+	.then( () => moveXPromise(btn, 400, 1000))
+	.catch(( position ) => {
+		alert('screen boundary reached');
+	});
+```
+
+Exception handling was even thrown in for free. This is much more descriptive and readable.
+
+### Instantiating a new Promise
+
+```javascript
+new isKoroneStreaming = new Promise((resolve, reject) => {});
+```
+
+Promise's constructor accepts callback functions for the eventualities of the states `resolved` and `rejected`. This state is kept in a hidden property of the object, `[[PromiseStatus]]`.
+
+### Calling a Promise
+
+Promise also has the methods `then()` and `catch()` to handle the states `resolved` and `rejected` respectively.
+
+```javascript
+const isKoroneStreaming = new Promise((resolve, reject) => {
+	let streaming = Math.random();
+	streaming < 0.5 ? resolve() : reject();
+});
+
+isKoroneStreaming
+	.then(() => { watchLive(); })
+	.catch(() => { watchArchive(); })
+```
+
+Before resolving or rejecting, `[[PromiseStatus]]`'s value will be `pending`, such as in the case of waiting on a web request to resolve.
+
+Consider instantiating the promise as the return in a function expression to take advantage of closure:
+
+```javascript
+// instantiation
+const promiseToWatchKorone = () => {
+	return new Promise((resolve, reject) => {
+		checkKoroneStatus((isStreaming) => {
+			isStreaming ? resolve(streamUrl) : reject(archiveUrl);
+		});
+	});
+};
+
+// call
+promiseToWatchKorone()
+	.then ((streamUrl) => { watchLive(streamUrl); })
+	.catch ((archiveUrl) => { watchArchive(archiveUrl); })
+```
+
+Many request libraries like Axios use functions that return promises like this.
+
+### Chaining multiple promises
+
+With web requests, common pattern is to chain promises to make followup requests using data gotten from a previous request. As long as a request returns a promise object, `.then()` can be chained sequentially.
+
+Here, assume `fakeRequest()` returns a promise. We'll request a user id, then use that data to hit the endpoint again for getting that user id's top post.
+
+```javascript
+fakeRequest('/users')
+	.then((res) => {
+		const id = res.data[0];
+		return fakeRequest(`/useasds/${id}`)
+	})
+	.then((res) => {
+		const postId = res.data.topPostId;
+		return postId;
+	})
+	.catch((err) => {
+		return err;
+	});
+
+```
+
+The `catch` will run if anything in the chain is rejected.

@@ -14,6 +14,7 @@
 - [js vm internals](jsvminternals)
 - [csWithJs](csWithJs)
 - [jsWeirdStuffReference](jsWeirdStuffReference)
+- [jsAjax](jsAjax)
 
 ## css notes
 - [cssPositioningNotes](cssPositioningNotes)

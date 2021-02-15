@@ -151,6 +151,18 @@ A sticky element behaves as relative until the element is scrolled up to its par
 
 Here, `.box`'s top is shifted to its parent element's top. If scrolling down causes `.box`'s top to reach the viewport's top, it becomes fixed as scrolling continues.
 
+## Float and Clear
+
+Floats, by default, reflow the page as the floated element is taken out of NF.
+
+Imagining the viewport as an aquarium into which the user is looking down, we can imagine block elements sinking to the bottom by default, all lining up from north to south. If the northernmost element is floated left, it rises towards the surface and to the left side of the page, and the remaining line of sunken elements slide north to fill the space. This gives the appearance of the second element disappearing, but it has in fact slid north underneath the floated element. Floated elements are removed from NF into what is apparently a secondary flow space layered on top of the viewport, and the base layer is reflowed.
+
+If a second element is floated with `float: left;`, that element floats and flows with the previously floated element as if it were inline, displaying to the right side of the previously floated element. The base layer again reflows underneath.
+
+In order to keep other floated elements from flowing next to each other, the `clear: left|right|both;` is used on the floated element.
+
+Since float and clear seems to break a very important convention of NF, it's probably best to avoid using it in new projects.
+
 ## Z-Index
 
 Higher index values are on top of lower index values. Be sure to leave numerical space between values incase you need to add something in between later.
