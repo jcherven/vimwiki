@@ -259,7 +259,7 @@ on the first call to `myNewFn()`, a new execution context is pushed onto the cal
 
 on the second call, the same area of global memory is referenced, but in a new execution context. within that code's memory space, the same value for counter is incremented again. this can be verified in the console by running `console.dir(myNewFn)` and inspecting the hidden object property called `[[scope]]`. since the object for myNewFn has a `[[scope]]` property, it knows to look in there for the value of counter. after returning incrementCounter, this context is popped off the call stack. myNewFn remains as data in global memory with the new value of `counter`. access to this data is restricted such that only further calls to myNewFn() will be able to get or set the data. this has given us permanent, private state for this function.
 
-## technical definition
+### technical definition
 
 both the overall concept of this, and the special property being stored, is called closure. colloquially we'd say "the data is in the function's closure", which is to say that the data is in the `[[scope]]` hidden property of the function's object in global memory.
 
