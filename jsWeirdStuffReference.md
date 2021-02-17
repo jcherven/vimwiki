@@ -275,10 +275,10 @@ const anotherFn = outer();
 
 ### practical uses
 
-	- helper functions like `once` and `memoize`
-	- iterators and generators which use lexical scoping and closure to achieve the most contemporary patterns for handling data in js
-	- module pattern, which preserves the state for the life of an application without polluting the global namespace
-	- asynchronous javascript with callbacks and promises rely on closure to persist state in an async environment
+- helper functions like `once` and `memoize`
+- iterators and generators which use lexical scoping and closure to achieve the most contemporary patterns for handling data in js
+- module pattern, which preserves the state for the life of an application without polluting the global namespace
+- asynchronous javascript with callbacks and promises rely on closure to persist state in an async environment
 
 ## hoisting
 
