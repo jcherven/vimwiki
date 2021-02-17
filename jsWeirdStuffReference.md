@@ -1,16 +1,185 @@
 # javascript idiosyncrasies
 
-these kinds of things tend to improve the legibility of the code, but not necessarily the readability. in other words, they help developers familiar with js syntactic sugar to know what's happening without digging though lots of other code, but they are less self-descriptive to someone not familiar with the syntactic sugar.
-
-## arrow functions
+## destructured objects
 
 ```javascript
-function multiplyBy2(input) { return input * 2; }
-const muliplyBy2 = (input) => { return input * 2; }
-const multiplyBy2 = (input) => input * 2
-const multiplyBy2 = input => input * 2
-const output = multiplyBy2(3)
-//> 6
+const person = {
+	firstN: 'Pekora',
+	lastN: 'Usada',
+	generation: '3rd',
+	catchphrase: 'Konpeko x3',
+	greeting: 'Dou~mo dou~mo',
+	printGreeting() {
+		// destructuring 'this' so that the properties can be used without the 'this' keyword.
+		// question: what does this have to do with scope and this object's context?
+		const {
+			firstN,
+			lastN,
+			generation,
+			catchphrase,
+			greeting
+		} = this;
+		console.log(`${catchphrase}! It's Hololive ${generation} generation's ${lastN} ${firstN} peko! ${greeting}!`)
+	}
+}
+```
+
+## behavior of the keyword `this`
+
+The Window class is instantiated as the global scope of the browser. When you define functions and variables in the global scope, they are added to current Window object as properties. Therefore, `this` in the global execution context will be a Window object.
+
+### invocation context
+
+the value of `this` depends on the invocation context of the function in which it is used. 
+
+```javascript
+const chao = {
+	type: "mischevious",
+	color: "violet",
+	nickName: "gremlin",
+	printBio() {
+		const { type, nickName, color } = this;
+		console.log(`${nickName} is a ${color} ${type}-type chao.`)
+	}
+}
+
+// invoking printBio like so will make this run in the context of the calling object (global)
+const printBio = chao.printBio;
+printBio();
+// > TypeError: this.nickName is not a function
+
+// invoking printBio like this will run it in chao's context, and `this` will work.
+chao.printBio()
+// > gremlin is a violet mischevious-type chao.
+```
+
+## computed object properties
+
+Dynamic object properties are now available in js.
+
+This is the expected behavior of attempting to define a property with a variable.
+
+```javascript
+const instrument = 'drums';
+const member = 'Masuki Sato';
+
+const band = {
+	instrument: member
+}
+
+console.log(band);
+// > {instrument: "Masuki Sato"}
+```
+
+The property identifier will take the literal string "instrument". If we'd like the value of the variable `instrument`, this square bracket syntax would be used:
+
+```javascript
+const instrument = 'drums';
+const member = 'Masuki Sato';
+
+const band = {}
+band[instrument] = member;
+
+// > band
+// > {drums: "Masuki Sato"}
+```
+
+Alternatively:
+
+```javascript
+const band = {
+	[instrument]: member
+}
+```
+
+Any valid expression can be evaluated.
+
+```javascript
+function addProp(obj, key, val) {
+	const copy = {
+		...obj,
+		[key]: val,
+	};
+	return copy;
+}
+
+const res = addProp(band, 'affinity', 'cool');
+
+// > res
+// > {drums: "Masuki Sato", affinity: "cool"}
+```
+
+Any valid expression.
+
+```javascript
+const newCard = { [Math.round(Math.random() * 100)]: 'Masuki Sato' }
+// > newCard
+// > {63: "Masuki Sato"}
+```
+
+## arrow functions (arrow function expressions, lambda expressions)
+
+Due to lexical scoping, the `this` property of a method defined with an arrow function expression uses the calling context's `this`. The following won't work because `this` will refer to the calling context:
+
+```javascript
+const chao = {
+	name: 'warachao',
+	laugh: () => {
+		console.log(`${this.name} goes lol`)
+	}
+}
+
+chao.laugh()
+// > undefined goes lol
+
+```
+
+If the calling context has a `name` reference, that one will be used.
+
+The exceptions of arrow function expressions are the following:
+
+- no bindings to `this` or `super`, and therefore should not be used as methods.
+- no `arguments` or `new.target` keywords
+- not suitable for `call`, `apply`, and `bind` methods, as these rely on establishing a scope (will probably cause runtime errors)
+- can not be used as constructors (will throw an interpreter error)
+- can not use `yield` within its body.
+
+### leveraging arrow function expressions and `this`
+
+```javascript
+const autoChao = {
+	phrases: ["chaochao", "ch-chao", "*blinks*", "*looks interested in what you're holding*", "CHAO"],
+	pickPhrase() {
+		const { phrases } = this;
+		const idx = Math.floor(Math.random() * phrases.length);
+		return phrases[idx];
+	},
+	start() {
+		setInterval(function () {
+			console.log(this.pickPhrase());
+		}, 3000)
+	}
+}
+
+autoChao.start();
+// this is broken
+```
+
+The call to autoChao.start() is in the global execution context. Since start contains code that calls setInterval(), that call will reference `this` as the window object.
+
+An arrow function does not have `this`, and therefore it will reference the execution context of `start()`, which does have access to the pickPhrase method.
+
+```javascript
+// ...
+start() {
+	setInterval(() => {
+		console.log(this.pickPhrase())
+	}, 3000)
+}
+// ...
+
+autoChao.start();
+// this works as expected
 ```
 
 ## anonymous functions
@@ -30,8 +199,6 @@ const result = copyArrayAndManipulate( [1, 2, 3], input => input * 2 );
 ```
 
 know that due to lexical scope, arrow functions and anonymous functions are not suitable for general function definitions.
-
-
 
 ## lexical (static) scope
 
