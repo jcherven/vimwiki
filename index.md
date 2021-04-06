@@ -23,6 +23,13 @@
 - [Week01](wiki/week01)
 - [Week02](wiki/Week02)
 
+## heavy vim
+- [vim g](vim g)
+
+## gentoo
+- [how-i-installed-gentoo](how-i-installed-gentoo)
+- [chroot-into-working-system](chroot-into-working-system)
+
 ## meta
 - [Markdown Cheatsheet](https://www.markdownguide.org/basic-syntax)
 - [VimWiki Cheatsheet](http://thedarnedestthing.com/vimwiki%20cheatsheet)
