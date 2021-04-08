@@ -108,9 +108,8 @@ FFLAGS="${COMMON_FLAGS}"
 MAKEOPTS="-j5"
 GRUB_PLATFORM="efi-64"
 L10N="en-US"
-USE="X systemd cryptsetup policykit networkmanager dhclient pulseaudio bash-completion lto samba -qt5 -kde -bluetooth"
+USE="X systemd cryptsetup pulseaudio bash-completion samba"
 INPUT_DEVICES="libinput"
-ACCEPT_KEYWORDS="~amd64"
 ACCEPT_LICENSE="* -@EULA"
 VIDEO_CARDS="nvidia intel"
 GENTOO_MIRRORS="http://mirror.leaseweb.com/gentoo/ https://mirror.leaseweb.com/gentoo/"
@@ -191,6 +190,8 @@ mkdir -p /etc/portage/package.{accept_keywords,license,mask,unmask,use}
 time emerge --ask --verbose --update --deep --with-bdeps=y --newuse @world
 ```
 
+2021-04-08 build time: 5.05 hours
+
 ## install a good text editor
 
 ```
@@ -214,7 +215,7 @@ UUID=<carrot--vg-root uuid>	/	ext4	defaults,acl	0	1
 tmpfs	/tmp	tmpfs	defaults,size=4G	0	0
 tmpfs	/run	tmpfs	size=100M	0	0
 # shm
-shm	/dev/shmwtmpfs	nodev,nosuid,noexec	0	0
+shm	/dev/shw	tmpfs	nodev,nosuid,noexec	0	0
 ```
 
 ## install and build kernel sources
@@ -260,6 +261,8 @@ LUKS="yes"
 time genkernel --luks --lvm all
 ```
 
+2021-04-08 build time: 61 minutes
+
 ## install and configure grub
 
 ### install
@@ -300,4 +303,42 @@ exit
 shutdown -r now
 ```
 
-## first run
+# first run
+
+## networking
+
+```
+systemd-machine-id-setup
+hostnamectl set-hostname <hostname>
+timedatectl set-timezone America/New_York
+env-update && source /etc/profile
+```
+
+```
+/etc/systemd/network/50-dhcp.network
+[Match]
+Name=en*
+
+[Network]
+DHCP=yes
+```
+
+```
+systemctl enable --now systemd-networkd
+systemctl enable --now systemd-resolved
+```
+
+```
+systemctl daemon-reexec
+```
+
+## basic environment software
+
+* Install sudo
+	* uncomment wheel permissions with visudo
+* install tmux
+* install git
+* install pip
+* pull dotfiles and make symlinks
+* install xorg-server and DE
+* configure SSH
