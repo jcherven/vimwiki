@@ -108,10 +108,10 @@ FFLAGS="${COMMON_FLAGS}"
 MAKEOPTS="-j5"
 GRUB_PLATFORM="efi-64"
 L10N="en-US"
-USE="X systemd cryptsetup pulseaudio bash-completion samba"
+USE="X systemd cryptsetup bash-completion samba"
 INPUT_DEVICES="libinput"
 ACCEPT_LICENSE="* -@EULA"
-VIDEO_CARDS="nvidia intel"
+VIDEO_CARDS="nvidia"
 GENTOO_MIRRORS="http://mirror.leaseweb.com/gentoo/ https://mirror.leaseweb.com/gentoo/"
 ```
 
@@ -160,7 +160,7 @@ emerge --sync
 
 ```
 eselect profile list
-(select desktop/gnome/systemd)
+(select desktop/systemd)
 eselect profile set <profile number>
 ```
 
@@ -196,6 +196,13 @@ time emerge --ask --verbose --update --deep --with-bdeps=y --newuse @world
 
 ```
 emerge --ask app-editors/neovim
+```
+
+```
+eselect editor list
+eselect editor set <vim number>
+eselect editor list vi
+eselect editor set <neovim number>
 ```
 
 ## configure fstab
