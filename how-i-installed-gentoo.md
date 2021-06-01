@@ -302,6 +302,11 @@ passwd
 useradd -m -G users,wheel,audio,video,portage,usb,cdrom,plugdev -s /bin/bash choro
 passwd choro
 ```
+## install some basic stuff
+
+```
+emerge -av  app-admin/sudo app-misc/tmux dev-vcs/git
+```
 
 ## reboot system
 
@@ -343,9 +348,27 @@ systemctl daemon-reexec
 
 * Install sudo
 	* uncomment wheel permissions with visudo
-* install tmux
 * install git
 * install pip
 * pull dotfiles and make symlinks
 * install xorg-server and DE
 * configure SSH
+
+## Using the live usb to mount and chroot
+
+```
+cryptsetup luksOpen /dev/sda3 lvm
+mount /dev/carrot-vg/root /mnt/gentoo
+mount -t proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+mount -t tmpfs -o nosuid,nodev,noexec shm /dev/shm
+
+chroot /mnt/gentoo /bin/bash 
+source /etc/profile
+export PS1="(chroot) $PS1"
+
+mount /dev/sda2 /boot
+```
