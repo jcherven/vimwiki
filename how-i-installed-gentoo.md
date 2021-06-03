@@ -305,7 +305,7 @@ passwd choro
 ## install some basic stuff
 
 ```
-emerge -av  app-admin/sudo app-misc/tmux dev-vcs/git
+emerge -av app-admin/sudo app-misc/tmux dev-vcs/git
 ```
 
 ## reboot system

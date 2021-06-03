@@ -18,6 +18,8 @@
 
 ## css notes
 - [cssPositioningNotes](cssPositioningNotes)
+- [cssRendering](cssRendering)
+- [BEMand7-1](BEMand7-1)
  
 ## Java Full Stack Notes by Week
 - [Week01](wiki/week01)
