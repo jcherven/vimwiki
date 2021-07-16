@@ -8,6 +8,8 @@ Flex containers are set with the `display: flex|inline-flex;` declaration. In-fl
 
 An element having the `display` value of `flex` will flow as a block level element. A value of `inline-flex` will behave as named.
 
+`flex-direction` declares the orientation of the flex layout. The default is `flex-direction: row`, and this is applied if not specified.
+
 ## Flex Property Shorthand
 
 The `flex:` property shorhand is written with the order of:
@@ -16,11 +18,13 @@ The `flex:` property shorhand is written with the order of:
 3. **flex-basis**: the initial size of a flex item. It sets the size of the content box, unless otherwise set with `box-sizing:`. Defaults to `auto`.
 
 ```css
-.flex-item {
+.container { display: flex; }
+
+.item {
 	flex: 0 1 auto;
 }
 
-.redundant-flex-item {
+.redundant-item {
 	flex-grow: 0;
 	flex-shrink: 1;
 	flex-basis: auto;
@@ -28,6 +32,34 @@ The `flex:` property shorhand is written with the order of:
 ```
 
 ## Flexbox patterns
+
+### Vertical centering
+
+In the flex item, specify dimensions and set the margin to `auto`.
+
+```css
+.container {
+	display: flex;
+}
+
+.container > div {
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
+```
+
+### Vertically Centered Items
+
+The `align-items` property deals with the **cross axis**, along which  all items will orient.
+
+```css
+.container {
+	display: flex;
+	align-items: center;
+	/* align-items: flex-start | flex-end | center | stretch; */
+}
+```
 
 ### Equal Width Columns
 
