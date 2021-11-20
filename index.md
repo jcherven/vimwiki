@@ -8,6 +8,7 @@
 - [scaryRegex](scaryRegex)
 
 ## Javascript Notes by Topic
+- [jsArrayMethodsQuickReference](jsArrayMethodsQuickReference)
 - [js data structures](jsds)
 - [js algorithms](jsalgorithms)
 - [js patterns](jspatterns)
