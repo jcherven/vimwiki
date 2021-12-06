@@ -187,7 +187,7 @@ env-update && source /etc/profile && export PS1="(chroot) $PS1"
 
 ```
 mkdir -p /etc/portage/package.{accept_keywords,license,mask,unmask,use}
-time emerge --ask --verbose --update --deep --with-bdeps=y --newuse @world
+time emerge -avuD --with-bdeps=y --newuse @world
 ```
 
 2021-04-08 build time: 5.05 hours
@@ -195,7 +195,7 @@ time emerge --ask --verbose --update --deep --with-bdeps=y --newuse @world
 ## install a good text editor
 
 ```
-emerge --ask app-editors/neovim
+emerge -av app-editors/neovim
 ```
 
 ```
@@ -228,15 +228,15 @@ shm	/dev/shw	tmpfs	nodev,nosuid,noexec	0	0
 ## install and build kernel sources
 
 ```
-emerge --ask sys-kernel/gentoo-sources
-emerge --ask sys-kernel/genkernel
-emerge --ask sys-fs/cryptsetup
+emerge -av sys-kernel/gentoo-sources
+emerge -av sys-kernel/genkernel
+emerge -av sys-fs/cryptsetup
 ```
 
 ### install firmware (optional)
 
 ```
-emerge --ask sys-kernel/linux-firmware
+emerge -av sys-kernel/linux-firmware
 ```
 
 ### install intel microcode
@@ -244,7 +244,7 @@ emerge --ask sys-kernel/linux-firmware
 ```
 mkdir -p /etc/portage/package.use
 echo "sys-firmware/intel-microcode initramfs" > /etc/portage/package.use/intel-microcode
-emerge --ask sys-firmware/intel-microcode
+emerge -av sys-firmware/intel-microcode
 ```
 
 ### configure genkernel.conf
@@ -277,7 +277,7 @@ time genkernel --luks --lvm all
 ```
 mkdir -p /etc/portage/package.use
 echo "sys-boot/grub device-mapper" > /etc/portage/package.use/grub
-emerge --ask sys-boot/grub
+emerge -av sys-boot/grub
 grub-install --target=x86_64-efi --efi-directory=/boot
 ```
 
