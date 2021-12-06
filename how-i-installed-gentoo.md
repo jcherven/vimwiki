@@ -4,7 +4,7 @@
 	- [disk configuration](#disk-configuration)
 		- [partitioning](#partitioning)
 		- [grub and boot filesystems](#grub-and-boot-filesystems)
-		- [LUKS volume group](#LUKS-volume-group)
+		- [LUKS volume group](#luks-volume-group)
 		- [root filesystem](#root-filesystem)
 		- [swap filesystem](#swap-filesystem)
 	- [gentoo installation](#gentoo-installation)
@@ -265,7 +265,7 @@ emerge -av sys-kernel/genkernel
 emerge -av sys-fs/cryptsetup
 ```
 
-### install firmware (optional)
+### install firmware
 
 ```
 emerge -av sys-kernel/linux-firmware
