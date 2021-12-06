@@ -32,6 +32,7 @@
 	- [networking](#networking)
 	- [basic environment software](#basic-environment-software)
 - [using the live usb to mount and chroot](#using-the-live-usb-to-mount-and-chroot)
+
 ## disk configuration
 
 ### partitioning
