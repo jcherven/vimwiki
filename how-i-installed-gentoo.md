@@ -1,8 +1,37 @@
 # gentoo with systemd stage 3 with UEFI LUKS on LVM
 
-- [disk configuration](#disk-configuration)
-- [grub and boot filesystems](#grub-and-boot-filesystems)
-
+- Top
+	- [disk configuration](#disk-configuration)
+		- [partitioning](#partitioning)
+		- [grub and boot filesystems](#grub-and-boot-filesystems)
+		- [LUKS volume group](#LUKS-volume-group)
+		- [root filesystem](#root-filesystem)
+		- [swap filesystem](#swap-filesystem)
+	- [gentoo installation](#gentoo-installation)
+		- [install systemd stage 3](#install-systemd-stage-3)
+		- [mount and chroot](#mount-and-chroot)
+		- [update gentoo ebuild repository](#update-gentoo-ebuild-repository)
+		- [select profile](#select-profile)
+		- [timezone](#timezone)
+		- [locales](#locales)
+	- [update world](#update-world)
+	- [configure a text editor](#configure-a-text-editor)
+	- [configure fstab](#configure-fstab)
+	- [install and build kernel sources](#install-and-build-kernel-sources)
+		- [install firmware](#install-firmware)
+		- [install intel microcode](#install-intel-microcode)
+		- [configure genkernel.conf](#configure-genkernel.conf)
+		- [build kernel](#build-kernel)
+	- [install and configure grub](#install-and-configure-grub)
+		- [install grub](#install-grub)
+		- [configure grub](#configure-grub)
+	- [set root pw](#set-root-pw)
+	- [install some basic stuff](#install-some-basic-stuff)
+	- [reboot system](#reboot-system)
+- [first run](#first-run)
+	- [networking](#networking)
+	- [basic environment software](#basic-environment-software)
+- [using the live usb to mount and chroot](#using-the-live-usb-to-mount-and-chroot)
 ## disk configuration
 
 ### partitioning
@@ -195,7 +224,7 @@ time emerge -avuD --with-bdeps=y --newuse @world
 
 2021-04-08 build time: 5.05 hours
 
-## install a good text editor
+## configure a text editor
 
 ```
 emerge -av app-editors/neovim
@@ -275,7 +304,7 @@ time genkernel --luks --lvm all
 
 ## install and configure grub
 
-### install
+### install grub
 
 ```
 mkdir -p /etc/portage/package.use
@@ -284,7 +313,7 @@ emerge -av sys-boot/grub
 grub-install --target=x86_64-efi --efi-directory=/boot
 ```
 
-### configure
+### configure grub
 
 ```
 cp /etc/default/grub /etc/default/grub.default
