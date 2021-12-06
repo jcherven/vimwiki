@@ -1,5 +1,8 @@
 # gentoo with systemd stage 3 with UEFI LUKS on LVM
 
+- [disk configuration](#disk-configuration)
+- [grub and boot filesystems](#grub-and-boot-filesystems)
+
 ## disk configuration
 
 ### partitioning
