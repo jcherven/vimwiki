@@ -24,7 +24,16 @@ There are three rarely used lifecycle methods that aren't listed here: `shouldCo
 
 ## 0. `constructor(props)` (optional)
 
-optional as long as you don't bind methods and don't initialize state. state can be set in the constructor if needed. the constructor is the only place where state should be directly manipulated (all other state manipulations should be done with the `setState()` method).
+React component constructors are for:
+
+1. initializing local state by assigning an object to `this.state`
+2. binding event handler methods to an instance
+
+they are optional if you don't bind methods or don't initialize state.
+
+the constructor is the only place where state should be directly manipulated (all other state manipulations should be done with the `setState()` method).
+
+if state is directly assigned, `super(props)` must be called. failing to do so will cause `this.props` to be `undefined`.
 
 ```javascript
 constructor(props) {
@@ -46,7 +55,7 @@ class App extends React.Component {
 
 `render()` is the only required method in a class component. the implementation of the function should be a "pure function", meaning that it does not modify component state, it returns the same result each time it's invoked, and it has no side effects.
 
-if we look strictly at the most fundamental thing the render method does, it simply returns data to be used in the DOM. it must return some type based on what it finds in its examination of `this.props`. One of the most common types is a React element (JSX) for rendering a DOM node., but other types include JS values (as text DOM content) and some special react data types ([fragments](reactFragments), [portals](reactPortals))
+if we look strictly at the most fundamental thing the render method does, it simply returns something to be used in the DOM. it must return some type based on what it finds in its examination of `this.props`. One of the most common types is a React element (JSX) for rendering a DOM node, but other types include JS values (as text DOM content) and some special react data types ([fragments](reactFragments), [portals](reactPortals))
 
 the best way to keep the `render()` method pure is to avoid manipulating the browser with it. other lifecycle methods are responsible for that.
 
