@@ -1,4 +1,4 @@
-# React Component Lifecycle
+React Component Lifecycle
 
 ## Actual lifecycle
 
