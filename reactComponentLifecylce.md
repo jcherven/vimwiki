@@ -51,6 +51,8 @@ class App extends React.Component {
 }
 ```
 
+State should not, however, ever be updated by direct manipulation of `this.state` outside of the constructor. The only time `this.state` can be safely manipulated is when instantiating a state object. Manipulations should be done with the `setState()` method.
+
 ## 1. `render()` (required)
 
 `render()` is the only required method in a class component. the implementation of the function should be a "pure function", meaning that it does not modify component state, it returns the same result each time it's invoked, and it has no side effects.
