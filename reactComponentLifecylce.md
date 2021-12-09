@@ -1,9 +1,5 @@
 # React Component Lifecycle
 
-These are listed in the order they are called when a component object is initialized.
-
-There are three rarely used lifecycle methods that aren't listed here: `shouldComponentUpdate()`, `getDerivedStateFromProps()`, and `getSnapshotBeforeUpdate()`. they are important but not for making most components.
-
 ## Actual lifecycle
 
 - Mounting
@@ -36,9 +32,11 @@ the constructor is the only place where state should be directly manipulated (al
 if state is directly assigned, `super(props)` must be called. failing to do so will cause `this.props` to be `undefined`.
 
 ```javascript
-constructor(props) {
-	super(props);
-	this.state = { anyNumber: null, funnyName: '' };
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { anyNumber: null, funnyName: '' };
+	}
 }
 ```
 
@@ -51,7 +49,7 @@ class App extends React.Component {
 }
 ```
 
-State should not, however, ever be updated by direct manipulation of `this.state` outside of the constructor. The only time `this.state` can be safely manipulated is when instantiating a state object. Manipulations should be done with the `setState()` method.
+State should not, however, ever be updated by direct manipulation of `this.state` outside of the constructor. The only time `this.state` can be safely manipulated is when instantiating a state object. Manipulations such as updates should be done with the `setState()` method. 
 
 ## 1. `render()` (required)
 
@@ -67,14 +65,10 @@ the best way to keep the `render()` method pure is to avoid manipulating the bro
 
 ## 2. `componentDidMount()`
 
-this is one of the methods in which it's okay to interact with the browser. it only runs once after the `render()` method, so it's great for things like initial state loading. official docs prefer doing setup operations like data loading in here rather than in the constructor. setup code will work in the constructor, but it's preferred to do it here for reasons that i have not investigated yet.
+this is one of the methods in which it's okay to interact with the browser. it only runs once after the `render()` method, so it's great for things like initial state loading, e.g., a http request is made to load up the state with some data using the `this.setState()` method. official docs prefer doing setup operations like data loading in here rather than in the constructor. setup code will work in the constructor, but it's preferred to do it here for reasons that i have not investigated yet.
 
 ## 3. `componentDidUpdate()`
 
 A very simplistic way to look at what a component is doing while a user is viewing a page of the app is to imagine it waiting for a state update. 
 gets called anytime there is a change like change in state or a new set of props being passed from the parent. examples include making a request on click or live seach help while the user types.
-
-## 4. `componentWillUnmount()`
-
-not sure about this one yet. it apprently does some cleanup.
 
