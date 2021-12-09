@@ -7,6 +7,10 @@
 - [simpleRegex](simpleRegex)
 - [scaryRegex](scaryRegex)
 
+## Bash Notes
+- [bashIdempotency](bashIdempotency)
+- [bashReminders](bashReminders)
+
 ## Javascript Notes by Topic
 - [jsArrayMethodsQuickReference](jsArrayMethodsQuickReference)
 - [js data structures](jsds)
