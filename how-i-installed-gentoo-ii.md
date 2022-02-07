@@ -92,10 +92,6 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 ### configure make.conf
 
 ```
-mirrorselect -c USA -s3 -b10 -D -o >> /mnt/gentoo/etc/portage/make.conf
-```
-
-```
 mkdir -p /mnt/gentoo/etc/portage/repos.conf
 cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 ```
@@ -120,6 +116,7 @@ USE="X systemd dist-kernel bash-completion samba libinput pulseaudio -games"
 INPUT_DEVICES="libinput"
 ACCEPT_LICENSE="* -@EULA"
 VIDEO_CARDS="intel"
+GENTOO_MIRRORS="http://mirror.leaseweb.com/gentoo/ https://mirror.leaseweb.com/gentoo/"
 ...
 
 ```
