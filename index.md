@@ -35,9 +35,10 @@
 ## heavy vim
 - [vim g](vim g)
 
-## gentoo
+## linux
 - [how-i-installed-gentoo](how-i-installed-gentoo)
 - [chroot-into-working-system](chroot-into-working-system)
+- [how-i-installed-gentoo-ii](how-i-installed-gentoo-ii)
 
 ## meta
 - [Markdown Cheatsheet](https://www.markdownguide.org/basic-syntax)
