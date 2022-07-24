@@ -7,6 +7,9 @@
 - [simpleRegex](simpleRegex)
 - [scaryRegex](scaryRegex)
 
+## Bash Notes
+- [bashReminders](bashReminders)
+
 ## Javascript Notes by Topic
 - [jsArrayMethodsQuickReference](jsArrayMethodsQuickReference)
 - [js data structures](jsds)
@@ -28,6 +31,9 @@
 - [7-1ForSass](7-1ForSass)
 - [node-sass](node-sass)
  
+## Reactjs notes
+- [reactComponentLifecylce](reactComponentLifecylce)
+
 ## Java Full Stack Notes by Week
 - [Week01](wiki/week01)
 - [Week02](wiki/Week02)
