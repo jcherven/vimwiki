@@ -45,6 +45,7 @@
 - [how-i-installed-gentoo](how-i-installed-gentoo)
 - [chroot-into-working-system](chroot-into-working-system)
 - [how-i-installed-gentoo-ii](how-i-installed-gentoo-ii)
+- [how-i-patched-an-ubuntu-kernel](how-i-patched-an-ubuntu-kernel)
 
 ## meta
 - [Markdown Cheatsheet](https://www.markdownguide.org/basic-syntax)
