@@ -7,6 +7,7 @@ instructions for ubuntu 20.04 lts (kernel 5.4)
 ```sh
 sudo apt install -y build-dep linux linux-image-$(uname -r)
 sudo apt install -y libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
+sudo apt install -y dwarves
 ```
 
 in `/etc/apt/sources.list` add:
