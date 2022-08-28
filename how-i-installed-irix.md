@@ -8,7 +8,7 @@
 
 ## temporary instructions
 
-until i get a moment to type up a good docpage, follow the instructions at [this up to date techpub](techpubs.spinlocksolutions.com/irix/remote-irix-6.5-installation-from-linux.html)
+until i get a moment to type up a good docpage, follow the instructions at [this up to date techpub](http://techpubs.spinlocksolutions.com/irix/remote-irix-6.5-installation-from-linux.html)
 
 ## post installation tasks
 
